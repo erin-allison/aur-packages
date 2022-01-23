@@ -1,6 +1,0 @@
-pkg
-src
-vgpu_unlock-rs
-*.run
-*.tar.zst
-*.tar.gz
