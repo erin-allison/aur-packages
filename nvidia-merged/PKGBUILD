@@ -54,8 +54,8 @@ prepare() {
     gunzip "${_gridpkg}"/nvidia-{cuda-mps-control,modprobe,persistenced,settings,smi,xconfig}.1.gz
 
     sed \
-      -e 's/# GRID_BUILD parameter.*/\0 \nGRID_BUILD=1/' \
-      -i "${_vgpupkg}/kernel/conftest.sh"
+      -e 's/# VGX_KVM_BUILD parameter.*/\0 \nVGX_KVM_BUILD=1/' \
+      -i "${_gridpkg}/kernel/conftest.sh"
 
     sed \
       -e "s/__VERSION_STRING/${pkgver}/" \
