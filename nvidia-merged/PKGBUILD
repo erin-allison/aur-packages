@@ -164,7 +164,6 @@ package_nvidia-merged-utils() {
     conflicts=('nvidia-libgl')
     provides=('vulkan-driver' 'opengl-driver' 'nvidia-libgl' 'nvidia-utils' 'vgpu_unlock')
     replaces=('nvidia-libgl' 'vgpu_unlock')
-    install="nvidia-utils.install"
 
     # X driver
     install -D -m755 "${_gridpkg}/nvidia_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/nvidia_drv.so"

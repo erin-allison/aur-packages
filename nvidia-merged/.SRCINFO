@@ -82,7 +82,6 @@ pkgname = nvidia-merged-settings
 
 pkgname = nvidia-merged-utils
 	pkgdesc = NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock
-	install = nvidia-utils.install
 	depends = xorg-server
 	depends = libglvnd
 	depends = egl-wayland
