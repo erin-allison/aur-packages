@@ -96,7 +96,6 @@ pkgname = nvidia-merged-utils
 	provides = nvidia-utils
 	provides = vgpu_unlock
 	conflicts = nvidia-libgl
-	replaces = nvidia-libgl
 	replaces = vgpu_unlock
 
 pkgname = opencl-nvidia-merged
