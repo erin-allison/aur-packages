@@ -33,16 +33,8 @@ pkgbase = nvidia-merged
 	sha256sums = 8656a261902e6569a71fbb55229dde8f03383772b6be50044102f250520d846f
 	sha256sums = SKIP
 
-pkgname = nvidia-merged
-	pkgdesc = NVIDIA drivers for linux; patched for vGPU support w/ Rust unlock
-	depends = nvidia-merged-dkms=510.47.03
-	depends = nvidia-merged-utils=510.47.03
-	optdepends = lib32-nvidia-merged-utils=510.47.03
-	optdepends = lib32-opencl-nvidia-merged=510.47.03
-	provides = nvidia
-
 pkgname = lib32-nvidia-merged-utils
-	pkgdesc = NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock (32-bit)
+	pkgdesc = NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock & host DRM output (32-bit)
 	depends = lib32-zlib
 	depends = lib32-gcc-libs
 	depends = lib32-libglvnd
@@ -64,7 +56,7 @@ pkgname = lib32-opencl-nvidia-merged
 	conflicts = lib32-opencl-nvidia
 
 pkgname = nvidia-merged-dkms
-	pkgdesc = NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock
+	pkgdesc = NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock & host DRM output
 	depends = dkms
 	depends = nvidia-merged-utils=510.47.03
 	depends = libglvnd
@@ -81,7 +73,7 @@ pkgname = nvidia-merged-settings
 	provides = nvidia-settings
 
 pkgname = nvidia-merged-utils
-	pkgdesc = NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock
+	pkgdesc = NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock & host DRM output
 	depends = xorg-server
 	depends = libglvnd
 	depends = egl-wayland

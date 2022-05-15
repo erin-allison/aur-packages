@@ -14,7 +14,7 @@
 
 
 pkgbase='nvidia-merged'
-pkgname=('nvidia-merged' 'lib32-nvidia-merged-utils' 'lib32-opencl-nvidia-merged' 'nvidia-merged-dkms' 'nvidia-merged-settings' 'nvidia-merged-utils' 'opencl-nvidia-merged')
+pkgname=('lib32-nvidia-merged-utils' 'lib32-opencl-nvidia-merged' 'nvidia-merged-dkms' 'nvidia-merged-settings' 'nvidia-merged-utils' 'opencl-nvidia-merged')
 pkgver=510.47.03
 pkgrel=1
 arch=('x86_64')
@@ -135,7 +135,7 @@ package_opencl-nvidia-merged() {
 }
 
 package_nvidia-merged-dkms() {
-    pkgdesc="NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock"
+    pkgdesc="NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock & host DRM output"
     depends=('dkms' "nvidia-merged-utils=${pkgver}" 'libglvnd')
     provides=('NVIDIA-MODULE' 'nvidia-dkms')
 
@@ -170,15 +170,8 @@ package_nvidia-merged-settings() {
     install -D -m644 "${_gridpkg}/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
 }
 
-package_nvidia-merged() {
-    pkgdesc='NVIDIA drivers for linux; patched for vGPU support w/ Rust unlock'
-    depends=("nvidia-merged-dkms=${pkgver}" "nvidia-merged-utils=${pkgver}")
-    optdepends=("lib32-nvidia-merged-utils=${pkgver}" "lib32-opencl-nvidia-merged=${pkgver}")
-    provides=('nvidia')
-}
-
 package_nvidia-merged-utils() {
-    pkgdesc="NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock"
+    pkgdesc="NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock & host DRM output"
     depends=('xorg-server' 'libglvnd' 'egl-wayland')
     optdepends=("nvidia-merged-settings=${pkgver}: configuration tool"
                 'xorg-server-devel: nvidia-xconfig'
@@ -332,7 +325,7 @@ package_nvidia-merged-utils() {
 }
 
 package_lib32-nvidia-merged-utils() {
-    pkgdesc="NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock (32-bit)"
+    pkgdesc="NVIDIA drivers utilities; patched for vGPU support w/ Rust unlock & host DRM output (32-bit)"
     depends=('lib32-zlib' 'lib32-gcc-libs' 'lib32-libglvnd' "nvidia-merged-utils=${pkgver}")
     optdepends=("lib32-opencl-nvidia=${pkgver}")
     provides=('lib32-vulkan-driver' 'lib32-opengl-driver' 'lib32-nvidia-libgl' 'lib32-nvidia-utils')
