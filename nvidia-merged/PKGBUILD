@@ -1,5 +1,18 @@
 # Maintainer: Erin Allison <erin@eallison.us>
 
+# BUILD INSTRUCTIONS:
+# -------------------
+#
+# Please note that distribution of the driver files used in this
+# package may be prohibited by NVIDIA's EULA.
+# Please consult any applicable license agreements prior to
+# usage of this script.
+#
+# You will need to acquire both NVIDIA-Linux-...-grid.run
+# and ...-vgpu-kvm.run, place them in the same directory
+# as this PKGBUILD file, and then run makepkg.
+
+
 pkgbase='nvidia-merged'
 pkgname=('nvidia-merged' 'lib32-nvidia-merged-utils' 'lib32-opencl-nvidia-merged' 'nvidia-merged-dkms' 'nvidia-merged-settings' 'nvidia-merged-utils' 'opencl-nvidia-merged')
 pkgver=510.47.03
@@ -13,9 +26,20 @@ groups=('nvidia-merged')
 _gridpkg="NVIDIA-Linux-${CARCH}-${pkgver}-grid"
 _vgpupkg="NVIDIA-Linux-${CARCH}-${pkgver}-vgpu-kvm"
 
-source=('nvidia-drm-outputclass.conf' 'nvidia-smi' 'nvidia-vgpu.conf' 'vgpu_unlock-rs.conf' 'nv-kernel.patch' 'nvidia.rules' 'nvidia-utils.sysusers' 'nvidia-vgpu-vfio.patch' 'vgpu_unlock.patch'
-    "${_gridpkg}.run"
-    "${_vgpupkg}.run"
+DLAGENTS=("file::/usr/bin/echo ${BOLD}${RED} Unable to find %u, please read the PKGBUILD ${ALL_OFF}" $DLAGENTS[@])
+
+source=(
+    'nvidia-drm-outputclass.conf'
+    'nvidia-smi'
+    'nvidia-vgpu.conf'
+    'vgpu_unlock-rs.conf'
+    'nv-kernel.patch'
+    'nvidia.rules'
+    'nvidia-utils.sysusers'
+    'nvidia-vgpu-vfio.patch'
+    'vgpu_unlock.patch'
+    "file://${_gridpkg}.run"
+    "file://${_vgpupkg}.run"
     'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=35d5163')
 sha256sums=('be99ff3def641bb900c2486cce96530394c5dc60548fc4642f19d3a4c784134d'
             '20676096714ac00d9fc993901ab275e4b0fa3f2eddc937dae395c8f4e8cb543e'

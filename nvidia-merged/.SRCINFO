@@ -17,8 +17,8 @@ pkgbase = nvidia-merged
 	source = nvidia-utils.sysusers
 	source = nvidia-vgpu-vfio.patch
 	source = vgpu_unlock.patch
-	source = NVIDIA-Linux-x86_64-510.47.03-grid.run
-	source = NVIDIA-Linux-x86_64-510.47.03-vgpu-kvm.run
+	source = file://NVIDIA-Linux-x86_64-510.47.03-grid.run
+	source = file://NVIDIA-Linux-x86_64-510.47.03-vgpu-kvm.run
 	source = git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=35d5163
 	sha256sums = be99ff3def641bb900c2486cce96530394c5dc60548fc4642f19d3a4c784134d
 	sha256sums = 20676096714ac00d9fc993901ab275e4b0fa3f2eddc937dae395c8f4e8cb543e
