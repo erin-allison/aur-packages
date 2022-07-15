@@ -2,29 +2,39 @@ diff --git a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c b/kernel/nvidia-vgpu-vfi
 index acb8fb2..a300b73 100644
 --- a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
 +++ b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c
-@@ -1058,8 +1058,8 @@ static int nv_vgpu_vfio_region_info(vgpu_dev_t *vgpu_dev,
+@@ -1058,6 +1058,14 @@ static int nv_vgpu_vfio_region_info(vgpu_dev_t *vgpu_dev,
          struct vfio_region_info_cap_type cap_type = {
              .header.id = VFIO_REGION_INFO_CAP_TYPE,
              .header.version = 1,
--            .type = VFIO_REGION_TYPE_MIGRATION,
--            .subtype = VFIO_REGION_SUBTYPE_MIGRATION
++#if defined(VFIO_REGION_TYPE_MIGRATION_DEPRECATED)
 +            .type = VFIO_REGION_TYPE_MIGRATION_DEPRECATED,
++#else
+             .type = VFIO_REGION_TYPE_MIGRATION,
++#endif
++#if defined(VFIO_REGION_SUBTYPE_MIGRATION_DEPRECATED)
 +            .subtype = VFIO_REGION_SUBTYPE_MIGRATION_DEPRECATED
++#else
+             .subtype = VFIO_REGION_SUBTYPE_MIGRATION
++#endif
          };
- 
-         /* Add REGION CAP type */
-@@ -1261,12 +1261,12 @@ static void vgpu_read_base(vgpu_dev_t *vgpu_dev)
+@@ -1261,12 +1261,20 @@ static void vgpu_read_base(vgpu_dev_t *vgpu_dev)
  NvU32 nv_translate_device_state(NvU32 device_state, NvU32 nv_state)
  {
      if (device_state & VFIO_DEVICE_STATE_RUNNING) {
--        if (device_state & VFIO_DEVICE_STATE_SAVING)
++#if defined(VFIO_DEVICE_STATE_V1_SAVING)
 +        if (device_state & VFIO_DEVICE_STATE_V1_SAVING)
++#else
+         if (device_state & VFIO_DEVICE_STATE_SAVING)
++#endif
              return NV_VFIO_DEVICE_STATE_MIGRATION_PRECOPY_ACTIVE;
          else
              return NV_VFIO_DEVICE_STATE_RUNNING;
      } else {
--        if (device_state & VFIO_DEVICE_STATE_SAVING)
++#if defined(VFIO_DEVICE_STATE_V1_SAVING)
 +        if (device_state & VFIO_DEVICE_STATE_V1_SAVING)
++#else
+         if (device_state & VFIO_DEVICE_STATE_SAVING)
++#endif
              return NV_VFIO_DEVICE_STATE_MIGRATION_STOPNCOPY_ACTIVE;
          else if (nv_state == NV_VFIO_DEVICE_STATE_MIGRATION_STOPNCOPY_ACTIVE)
              return NV_VFIO_DEVICE_STATE_NONE;
