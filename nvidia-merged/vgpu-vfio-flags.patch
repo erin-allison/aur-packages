@@ -1,0 +1,13 @@
+diff --git a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
+index adcd213..bfe110c 100644
+--- a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
++++ b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
+@@ -27,7 +27,7 @@ NVIDIA_VGPU_VFIO_CFLAGS += -I$(src)/nvidia-vgpu-vfio
+ NVIDIA_VGPU_VFIO_CFLAGS += -DNV_BUILD_MODULE_INSTANCES=0
+ NVIDIA_VGPU_VFIO_CFLAGS += -DNVIDIA_UNDEF_LEGACY_BIT_MACROS
+ 
+-NV_KVM_MIGRATION_UAPI ?= 0
++NV_KVM_MIGRATION_UAPI ?= 1
+ ifneq ($(NV_KVM_MIGRATION_UAPI),0)
+   NVIDIA_VGPU_VFIO_CFLAGS += -DNV_KVM_MIGRATION_UAPI
+ endif
