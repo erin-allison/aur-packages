@@ -41,6 +41,8 @@ source=(
     'nvidia-utils.sysusers'
     'vgpu_unlock.patch'
     'vfio-live-migration.patch'
+    'unlock-config.toml'
+    'unlock-profile_override.toml'
     "file://${_gridpkg}.run"
     "file://${_vgpupkg}.run"
     'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=6deede6')
@@ -54,7 +56,9 @@ sha256sums=('be99ff3def641bb900c2486cce96530394c5dc60548fc4642f19d3a4c784134d'
             '4fbfd461f939f18786e79f8dba5fdb48be9f00f2ff4b1bb2f184dbce42dd6fc3'
             'd8d1caa5d72c71c6430c2a0d9ce1a674787e9272ccce28b9d5898ca24e60a167'
             'f77f26f609bb6f1eb69d3dc7e84ba704e5c065e424a619ab1460accb8247143f'
-            '7b1cad75cbf8887b6dfcfd92c4771f3f6b4229b799a0c050b7479c3c11387e92'
+            '5bd9c649adf0e00bb8bab3f4609fc75f7d87b20fa17b57948851aee0d8395c42'
+            'b141a34b71a84ff6e28732654e43cf159be078ff9a70cb82a583edfac3dd0a4e'
+            '563223a44a2bb620b9e3c0c75bc4dac942c2f49d210f92c1d2cd7386b1b52822'
             '2affa1e1035a71b17d15d5fa9a16d8b3704d73701f04afaa4b09035a3412e6ce'
             'b7d076bee270e779b7c1eb512c9325794be2e8cbd7cd37c0f62fc72d87654a82'
             'SKIP')
