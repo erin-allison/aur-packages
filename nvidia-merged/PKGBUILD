@@ -326,8 +326,17 @@ package_nvidia-merged-utils() {
     cp -r "${_gridpkg}/html" "${pkgdir}/usr/share/doc/nvidia/"
     ln -s nvidia "${pkgdir}/usr/share/doc/nvidia-utils"
 
+    # new power management support
+    install -D -m644 "$_gridpkg"/systemd/system/*.service -t "${pkgdir}/usr/lib/systemd/system"
+    install -D -m755 "${_gridpkg}/systemd/system-sleep/nvidia" "${pkgdir}/usr/lib/systemd/system-sleep/nvidia"
+    install -D -m755 "${_gridpkg}/systemd/nvidia-sleep.sh" "${pkgdir}/usr/bin/nvidia-sleep.sh"
+
     # distro specific files must be installed in /usr/share/X11/xorg.conf.d
     install -D -m644 "${srcdir}/nvidia-drm-outputclass.conf" "${pkgdir}/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf"
+
+    install -D -m644 "${srcdir}/nvidia-utils.sysusers" "${pkgdir}/usr/lib/sysusers.d/$pkgname.conf"
+
+    install -D -m644 "${srcdir}/nvidia.rules" "$pkgdir"/usr/lib/udev/rules.d/60-nvidia.rules
 
     create_links
 
