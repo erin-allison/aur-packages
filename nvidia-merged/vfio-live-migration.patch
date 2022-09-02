@@ -1,0 +1,27 @@
+diff --git a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
+index adcd213..7badeab 100644
+--- a/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
++++ b/kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild
+@@ -27,11 +27,21 @@ NVIDIA_VGPU_VFIO_CFLAGS += -I$(src)/nvidia-vgpu-vfio
+ NVIDIA_VGPU_VFIO_CFLAGS += -DNV_BUILD_MODULE_INSTANCES=0
+ NVIDIA_VGPU_VFIO_CFLAGS += -DNVIDIA_UNDEF_LEGACY_BIT_MACROS
+ 
+-NV_KVM_MIGRATION_UAPI ?= 0
++NV_KVM_MIGRATION_UAPI ?= 1
+ ifneq ($(NV_KVM_MIGRATION_UAPI),0)
+   NVIDIA_VGPU_VFIO_CFLAGS += -DNV_KVM_MIGRATION_UAPI
+ endif
+ 
++#
++# Migration with v3.2 Kernel UAPI.
++#
++
++NV_VFIO_DEVICE_MIGRATION_HAS_START_PFN ?= 0
++ifneq ($(NV_VFIO_DEVICE_MIGRATION_HAS_START_PFN),0)
++  NVIDIA_VGPU_VFIO_CFLAGS += -DNV_VFIO_DEVICE_MIGRATION_HAS_START_PFN
++endif
++
++
+ ifneq ($(NV_VGPU_VFIO_BUILD_TYPE),release)
+   NVIDIA_VGPU_VFIO_CFLAGS += -DDEBUG
+ endif
