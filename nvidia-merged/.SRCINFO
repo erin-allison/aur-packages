@@ -85,7 +85,7 @@ pkgname = nvidia-merged-utils
 	optdepends = nvidia-merged-settings=510.85.03: configuration tool
 	optdepends = xorg-server-devel: nvidia-xconfig
 	optdepends = opencl-nvidia-merged=510.85.03: OpenCL support
-	optdepends = mdevctl: mediated device contfiguration tool
+	optdepends = mdevctl: mediated device configuration tool
 	optdepends = libvirt: virtualization engine control interface
 	provides = vulkan-driver
 	provides = opengl-driver

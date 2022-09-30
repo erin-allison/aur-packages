@@ -182,7 +182,7 @@ package_nvidia-merged-utils() {
     optdepends=("nvidia-merged-settings=${pkgver}: configuration tool"
                 'xorg-server-devel: nvidia-xconfig'
                 "opencl-nvidia-merged=${pkgver}: OpenCL support"
-                'mdevctl: mediated device contfiguration tool'
+                'mdevctl: mediated device configuration tool'
                 'libvirt: virtualization engine control interface')
     conflicts=('nvidia-libgl' 'nvidia-utils')
     provides=('vulkan-driver' 'opengl-driver' 'nvidia-libgl' 'nvidia-utils' 'vgpu_unlock')
