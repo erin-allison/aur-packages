@@ -142,7 +142,7 @@ package_nvidia-merged-dkms() {
     pkgdesc="NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock & host DRM output"
     depends=('dkms' "nvidia-merged-utils=${pkgver}" 'libglvnd')
     provides=('NVIDIA-MODULE' 'nvidia-dkms')
-    conflicts=('nvidia-dkms')
+    conflicts=('nvidia-dkms' 'nvidia')
 
     install -d -m755 "${pkgdir}/usr/src"
     cp -dr --no-preserve='ownership' "${_gridpkg}/kernel" "${pkgdir}/usr/src/nvidia-${_gridpkgver}"
