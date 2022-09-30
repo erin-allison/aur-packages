@@ -42,7 +42,7 @@ source=(
     'vgpu_unlock.patch'
     "file://${_gridpkg}.run"
     "file://${_vgpupkg}.run"
-    'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=6deede6')
+    'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=aa56da6')
 sha256sums=('be99ff3def641bb900c2486cce96530394c5dc60548fc4642f19d3a4c784134d'
             '20676096714ac00d9fc993901ab275e4b0fa3f2eddc937dae395c8f4e8cb543e'
             '5ea0d9edfcf282cea9b204291716a9a4d6d522ba3a6bc28d78edf505b6dc7949'
