@@ -66,6 +66,7 @@ pkgname = nvidia-merged-dkms
 	provides = NVIDIA-MODULE
 	provides = nvidia-dkms
 	conflicts = nvidia-dkms
+	conflicts = nvidia
 
 pkgname = nvidia-merged-settings
 	pkgdesc = Tool for configuring the NVIDIA graphics driver
