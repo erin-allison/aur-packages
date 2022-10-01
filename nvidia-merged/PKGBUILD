@@ -78,7 +78,6 @@ prepare() {
       -i "${_gridpkg}/nvidia-settings.desktop"
 
     bsdtar -C "${_gridpkg}" -xf "${_gridpkg}/nvidia-persistenced-init.tar.bz2"
-    gunzip "${_gridpkg}"/nvidia-{cuda-mps-control,modprobe,persistenced,settings,smi,xconfig}.1.gz
 
     sed \
       -e 's/# VGX_KVM_BUILD parameter.*/\0 \nVGX_KVM_BUILD=1/' \
@@ -167,7 +166,7 @@ package_nvidia-merged-settings() {
 
     install -D -m755 "${_gridpkg}/nvidia-settings" "${pkgdir}/usr/bin/nvidia-settings"
     install -D -m644 "${_gridpkg}/libnvidia-gtk3.so.${_gridpkgver}" "${pkgdir}/usr/lib/libnvidia-gtk3.so.${_gridpkgver}"
-    install -D -m644 "${_gridpkg}/nvidia-settings.1" "${pkgdir}/usr/share/man/man1/nvidia-settings.1"
+    install -D -m644 "${_gridpkg}/nvidia-settings.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-settings.1.gz"
     install -D -m644 "${_gridpkg}/nvidia-settings.png" "${pkgdir}/usr/share/pixmaps/nvidia-settings.png"
     install -D -m644 "${_gridpkg}/nvidia-settings.desktop" "${pkgdir}/usr/share/applications/nvidia-settings.desktop"
 
@@ -272,14 +271,14 @@ package_nvidia-merged-utils() {
 
     # nvidia-xconfig
     install -D -m755 "${_gridpkg}/nvidia-xconfig" "${pkgdir}/usr/bin/nvidia-xconfig"
-    install -D -m644 "${_gridpkg}/nvidia-xconfig.1" "${pkgdir}/usr/share/man/man1/nvidia-xconfig.1"
+    install -D -m644 "${_gridpkg}/nvidia-xconfig.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-xconfig.1.gz"
 
     # nvidia-bug-report
     install -D -m755 "${_vgpupkg}/nvidia-bug-report.sh" "${pkgdir}/usr/bin/nvidia-bug-report.sh"
 
     # nvidia-smi
     install -D -m755 "${_gridpkg}/nvidia-smi" "${pkgdir}/usr/lib/nvidia/nvidia-smi.orig"
-    install -D -m644 "${_gridpkg}/nvidia-smi.1" "${pkgdir}/usr/share/man/man1/nvidia-smi.1"
+    install -D -m644 "${_gridpkg}/nvidia-smi.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-smi.1.gz"
     install -D -m755 "${srcdir}/nvidia-smi" "${pkgdir}/usr/bin/nvidia-smi"
 
     # nvidia-vgpu
@@ -295,16 +294,16 @@ package_nvidia-merged-utils() {
     # nvidia-cuda-mps
     install -D -m755 "${_gridpkg}/nvidia-cuda-mps-server" "${pkgdir}/usr/bin/nvidia-cuda-mps-server"
     install -D -m755 "${_gridpkg}/nvidia-cuda-mps-control" "${pkgdir}/usr/bin/nvidia-cuda-mps-control"
-    install -D -m644 "${_gridpkg}/nvidia-cuda-mps-control.1" "${pkgdir}/usr/share/man/man1/nvidia-cuda-mps-control.1"
+    install -D -m644 "${_gridpkg}/nvidia-cuda-mps-control.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-cuda-mps-control.1.gz"
 
     # nvidia-modprobe
     # This should be removed if nvidia fixed their uvm module!
     install -D -m4755 "${_gridpkg}/nvidia-modprobe" "${pkgdir}/usr/bin/nvidia-modprobe"
-    install -D -m644  "${_gridpkg}/nvidia-modprobe.1" "${pkgdir}/usr/share/man/man1/nvidia-modprobe.1"
+    install -D -m644  "${_gridpkg}/nvidia-modprobe.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-modprobe.1.gz"
 
     # nvidia-persistenced
     install -D -m755 "${_gridpkg}/nvidia-persistenced" "${pkgdir}/usr/bin/nvidia-persistenced"
-    install -D -m644 "${_gridpkg}/nvidia-persistenced.1" "${pkgdir}/usr/share/man/man1/nvidia-persistenced.1"
+    install -D -m644 "${_gridpkg}/nvidia-persistenced.1.gz" "${pkgdir}/usr/share/man/man1/nvidia-persistenced.1.gz"
     install -D -m644 "${_gridpkg}/nvidia-persistenced-init/systemd/nvidia-persistenced.service.template" "${pkgdir}/usr/lib/systemd/system/nvidia-persistenced.service"
     sed -i 's/__USER__/nvidia-persistenced/' "${pkgdir}/usr/lib/systemd/system/nvidia-persistenced.service"
 
