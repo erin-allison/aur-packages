@@ -40,6 +40,7 @@ source=(
     'nvidia.rules'
     'nvidia-utils.sysusers'
     'vgpu_unlock.patch'
+    'vfio-live-migration.patch'
     "file://${_gridpkg}.run"
     "file://${_vgpupkg}.run"
     'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=6deede6')
