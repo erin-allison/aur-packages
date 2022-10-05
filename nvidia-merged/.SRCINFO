@@ -1,5 +1,5 @@
 pkgbase = nvidia-merged
-	pkgver = 510.85.03
+	pkgver = 510.85.02
 	pkgrel = 1
 	url = https://krutavshah.github.io/GPU_Virtualization-Wiki/
 	arch = x86_64
@@ -40,8 +40,8 @@ pkgname = lib32-nvidia-merged-utils
 	depends = lib32-zlib
 	depends = lib32-gcc-libs
 	depends = lib32-libglvnd
-	depends = nvidia-merged-utils=510.85.03
-	optdepends = lib32-opencl-nvidia=510.85.03
+	depends = nvidia-merged-utils=510.85.02
+	optdepends = lib32-opencl-nvidia=510.85.02
 	provides = lib32-vulkan-driver
 	provides = lib32-opengl-driver
 	provides = lib32-nvidia-libgl
@@ -61,7 +61,7 @@ pkgname = lib32-opencl-nvidia-merged
 pkgname = nvidia-merged-dkms
 	pkgdesc = NVIDIA drivers - module sources; patched for vGPU support w/ Rust unlock & host DRM output
 	depends = dkms
-	depends = nvidia-merged-utils=510.85.03
+	depends = nvidia-merged-utils=510.85.02
 	depends = libglvnd
 	provides = NVIDIA-MODULE
 	provides = nvidia-dkms
@@ -73,7 +73,7 @@ pkgname = nvidia-merged-settings
 	depends = gtk3
 	depends = libxv
 	depends = libvdpau
-	depends = nvidia-merged-utils=510.85.03
+	depends = nvidia-merged-utils=510.85.02
 	provides = nvidia-settings
 	conflicts = nvidia-settings
 
@@ -82,9 +82,9 @@ pkgname = nvidia-merged-utils
 	depends = xorg-server
 	depends = libglvnd
 	depends = egl-wayland
-	optdepends = nvidia-merged-settings=510.85.03: configuration tool
+	optdepends = nvidia-merged-settings=510.85.02: configuration tool
 	optdepends = xorg-server-devel: nvidia-xconfig
-	optdepends = opencl-nvidia-merged=510.85.03: OpenCL support
+	optdepends = opencl-nvidia-merged=510.85.02: OpenCL support
 	optdepends = mdevctl: mediated device configuration tool
 	optdepends = libvirt: virtualization engine control interface
 	provides = vulkan-driver

@@ -15,7 +15,7 @@
 
 pkgbase='nvidia-merged'
 pkgname=('lib32-nvidia-merged-utils' 'lib32-opencl-nvidia-merged' 'nvidia-merged-dkms' 'nvidia-merged-settings' 'nvidia-merged-utils' 'opencl-nvidia-merged')
-pkgver=510.85.03
+pkgver=510.85.02
 pkgrel=1
 arch=('x86_64')
 makedepends=('git' 'rust')
@@ -23,9 +23,10 @@ url='https://krutavshah.github.io/GPU_Virtualization-Wiki/'
 license=('custom')
 options=('!strip')
 groups=('nvidia-merged')
-_gridpkgver=510.85.02
+_gridpkgver=$pkgver
+_vgpupkgver=510.85.03
 _gridpkg="NVIDIA-Linux-${CARCH}-${_gridpkgver}-grid"
-_vgpupkg="NVIDIA-Linux-${CARCH}-${pkgver}-vgpu-kvm"
+_vgpupkg="NVIDIA-Linux-${CARCH}-${_vgpupkgver}-vgpu-kvm"
 
 DLAGENTS=("file::/usr/bin/echo ${BOLD}${RED} Unable to find %u, please read the PKGBUILD ${ALL_OFF}" $DLAGENTS[@])
 
@@ -85,7 +86,7 @@ prepare() {
       -i "${_gridpkg}/kernel/conftest.sh"
 
     sed \
-      -e "s/__VERSION_STRING/${_gridpkgver}/" \
+      -e "s/__VERSION_STRING/${pkgver}/" \
       -e 's/__JOBS/`nproc`/' \
       -e 's/__DKMS_MODULES//' \
       -e '$iBUILT_MODULE_NAME[0]="nvidia"\
@@ -264,8 +265,8 @@ package_nvidia-merged-utils() {
     install -D -m755 "${_gridpkg}/libnvidia-opticalflow.so.${_gridpkgver}" "${pkgdir}/usr/lib/libnvidia-opticalflow.so.${_gridpkgver}"
 
     # vGPU
-    install -D -m755 "${_vgpupkg}/libnvidia-vgpu.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-vgpu.so.${pkgver}"
-    install -D -m755 "${_vgpupkg}/libnvidia-vgxcfg.so.${pkgver}" "${pkgdir}/usr/lib/libnvidia-vgxcfg.so.${pkgver}"
+    install -D -m755 "${_vgpupkg}/libnvidia-vgpu.so.${_vgpupkgver}" "${pkgdir}/usr/lib/libnvidia-vgpu.so.${_vgpupkgver}"
+    install -D -m755 "${_vgpupkg}/libnvidia-vgxcfg.so.${_vgpupkgver}" "${pkgdir}/usr/lib/libnvidia-vgxcfg.so.${_vgpupkgver}"
 
     # DEBUG
     install -D -m755 "${_gridpkg}/nvidia-debugdump" "${pkgdir}/usr/bin/nvidia-debugdump"
