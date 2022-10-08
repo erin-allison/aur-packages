@@ -286,6 +286,7 @@ package_nvidia-merged-utils() {
     # nvidia-vgpu
     install -D -m755 "${_vgpupkg}/nvidia-vgpud" "${pkgdir}/usr/bin/nvidia-vgpud"
     install -D -m755 "${_vgpupkg}/nvidia-vgpu-mgr" "${pkgdir}/usr/bin/nvidia-vgpu-mgr"
+    install -D -m644 "${_vgpupkg}/sriov-manage" "${pkgdir}/usr/lib/nvidia/sriov-manage"
     install -D -m644 "${_vgpupkg}/vgpuConfig.xml" "${pkgdir}/usr/share/nvidia/vgpu/vgpuConfig.xml"
     install -D -m644 "${_vgpupkg}/init-scripts/systemd/nvidia-vgpud.service" "${pkgdir}/usr/lib/systemd/system/nvidia-vgpud.service"
     install -D -m644 "${_vgpupkg}/init-scripts/systemd/nvidia-vgpu-mgr.service" "${pkgdir}/usr/lib/systemd/system/nvidia-vgpu-mgr.service"
