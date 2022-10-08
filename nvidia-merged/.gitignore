@@ -1,6 +1,7 @@
 pkg
 src
 vgpu_unlock-rs
+vGPU-Unlock-patcher
 *.run
 *.tar.zst
 *.tar.gz
