@@ -138,7 +138,6 @@ package_nvidia-merged-dkms() {
     echo "nvidia-uvm"        | install -D -m644 /dev/stdin "${pkgdir}/usr/lib/modules-load.d/${pkgname}.conf"
 
     install -D -m644 "${_patchedpkg}/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
-    install -D -m644 "${_vgpupkg}/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/VGPU_LICENSE"
 }
 
 package_nvidia-merged-settings() {
@@ -320,7 +319,6 @@ package_nvidia-merged-utils() {
     install -D -m755 "vgpu_unlock-rs/target/release/libvgpu_unlock_rs.so" "${pkgdir}/usr/lib/nvidia/libvgpu_unlock_rs.so"
 
     install -D -m644 "${_patchedpkg}/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
-    install -D -m644 "${_vgpupkg}/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/VGPU_LICENSE"
     install -D -m644 "vgpu_unlock-rs/LICENSE" "${pkgdir}/usr/share/licenses/$pkgname/VGPU_UNLOCK-RS_LICENSE"
 }
 
