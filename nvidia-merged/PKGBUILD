@@ -8,9 +8,9 @@
 # Please consult any applicable license agreements prior to
 # usage of this script.
 #
-# You will need to acquire both NVIDIA-Linux-...-grid.run
-# and ...-vgpu-kvm.run, place them in the same directory
-# as this PKGBUILD file, and then run makepkg.
+# You will need to acquire NVIDIA-Linux-...-vgpu-kvm.run, place
+# it in the same directory as this PKGBUILD file, and then run
+# makepkg.
 
 
 pkgbase='nvidia-merged'
@@ -23,9 +23,8 @@ url='https://krutavshah.github.io/GPU_Virtualization-Wiki/'
 license=('custom')
 options=('!strip')
 groups=('nvidia-merged')
-_gridpkgver=$pkgver
 _vgpupkgver=510.85.03
-_gridpkg="NVIDIA-Linux-${CARCH}-${_gridpkgver}-grid"
+_generalpkg="NVIDIA-Linux-${CARCH}-${pkgver}"
 _vgpupkg="NVIDIA-Linux-${CARCH}-${_vgpupkgver}-vgpu-kvm"
 _patchedpkg="NVIDIA-Linux-${CARCH}-${pkgver}-merged-vgpu-kvm-patched"
 
@@ -38,7 +37,7 @@ source=(
     'vgpu_unlock-rs.conf'
     'nvidia.rules'
     'nvidia-utils.sysusers'
-    "file://${_gridpkg}.run"
+    "https://us.download.nvidia.com/XFree86/Linux-${CARCH}/${pkgver}/${_generalpkg}.run"
     "file://${_vgpupkg}.run"
     'git+https://github.com/VGPU-Community-Drivers/vGPU-Unlock-patcher.git#commit=a163379'
     'git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=6deede6')
@@ -48,7 +47,7 @@ sha256sums=('be99ff3def641bb900c2486cce96530394c5dc60548fc4642f19d3a4c784134d'
             'c85ae100a6c87c12906fd0057b77c0c4190f68434de4bc3bc89348ffc19aed61'
             '4fbfd461f939f18786e79f8dba5fdb48be9f00f2ff4b1bb2f184dbce42dd6fc3'
             'd8d1caa5d72c71c6430c2a0d9ce1a674787e9272ccce28b9d5898ca24e60a167'
-            'a4ce224e06e30c512794cd78e6158d9765f9420105d12b6fbc70f033b10bf329'
+            '372427e633f32cff6dd76020e8ed471ef825d38878bd9655308b6efea1051090'
             '773d3a215cedf5349eff00a9b052bc961f51ce971933f154f2d2997ed68aa59a'
             'SKIP'
             'SKIP')
@@ -70,7 +69,7 @@ prepare() {
     sed -e 's/if $DO_VGPU; then/if false; then/' -i patch.sh
     popd
 
-    vGPU-Unlock-patcher/patch.sh grid-merge
+    vGPU-Unlock-patcher/patch.sh general-merge
 
     cd "${_patchedpkg}"
 
@@ -175,7 +174,7 @@ package_nvidia-merged-utils() {
     install -D -m755 "${_patchedpkg}/nvidia_drv.so" "${pkgdir}/usr/lib/xorg/modules/drivers/nvidia_drv.so"
 
     # Wayland/GBM
-    install -D -m755 "${_patchedpkg}/libnvidia-egl-gbm.so.1.1.0" "${pkgdir}/usr/lib/libnvidia-egl-gbm.so.1.1.0"
+    install -D -m755 "${_patchedpkg}/"libnvidia-egl-gbm.so.1* -t "${pkgdir}/usr/lib/"
     install -D -m644 "${_patchedpkg}/15_nvidia_gbm.json" "${pkgdir}/usr/share/egl/egl_external_platform.d/15_nvidia_gbm.json"
 
     mkdir -p "${pkgdir}/usr/lib/gbm"
@@ -301,8 +300,19 @@ package_nvidia-merged-utils() {
     cp -r "${_patchedpkg}/html" "${pkgdir}/usr/share/doc/nvidia/"
     ln -s nvidia "${pkgdir}/usr/share/doc/nvidia-utils"
 
+    # new power management support
+    install -D -m644 "${_patchedpkg}/systemd/system/"*.service -t "${pkgdir}/usr/lib/systemd/system"
+    install -D -m755 "${_patchedpkg}/systemd/system-sleep/nvidia" "${pkgdir}/usr/lib/systemd/system-sleep/nvidia"
+    install -D -m755 "${_patchedpkg}/systemd/nvidia-sleep.sh" "${pkgdir}/usr/bin/nvidia-sleep.sh"
+    install -D -m755 "${_patchedpkg}/nvidia-powerd" "${pkgdir}/usr/bin/nvidia-powerd"
+    install -D -m644 "${_patchedpkg}/nvidia-dbus.conf" "${pkgdir}/usr/share/dbus-1/system.d/nvidia-dbus.conf"
+
     # distro specific files must be installed in /usr/share/X11/xorg.conf.d
     install -D -m644 "${srcdir}/nvidia-drm-outputclass.conf" "${pkgdir}/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf"
+
+    install -D -m644 "${srcdir}/nvidia-utils.sysusers" "${pkgdir}/usr/lib/sysusers.d/${pkgname}.conf"
+
+    install -D -m644 "${srcdir}/nvidia.rules" "${pkgdir}/usr/lib/udev/rules.d/60-nvidia.rules"
 
     create_links
 

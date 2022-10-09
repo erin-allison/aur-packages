@@ -14,7 +14,7 @@ pkgbase = nvidia-merged
 	source = vgpu_unlock-rs.conf
 	source = nvidia.rules
 	source = nvidia-utils.sysusers
-	source = file://NVIDIA-Linux-x86_64-510.85.02-grid.run
+	source = https://us.download.nvidia.com/XFree86/Linux-x86_64/510.85.02/NVIDIA-Linux-x86_64-510.85.02.run
 	source = file://NVIDIA-Linux-x86_64-510.85.03-vgpu-kvm.run
 	source = git+https://github.com/VGPU-Community-Drivers/vGPU-Unlock-patcher.git#commit=a163379
 	source = git+https://github.com/mbilker/vgpu_unlock-rs.git#commit=6deede6
@@ -24,7 +24,7 @@ pkgbase = nvidia-merged
 	sha256sums = c85ae100a6c87c12906fd0057b77c0c4190f68434de4bc3bc89348ffc19aed61
 	sha256sums = 4fbfd461f939f18786e79f8dba5fdb48be9f00f2ff4b1bb2f184dbce42dd6fc3
 	sha256sums = d8d1caa5d72c71c6430c2a0d9ce1a674787e9272ccce28b9d5898ca24e60a167
-	sha256sums = a4ce224e06e30c512794cd78e6158d9765f9420105d12b6fbc70f033b10bf329
+	sha256sums = 372427e633f32cff6dd76020e8ed471ef825d38878bd9655308b6efea1051090
 	sha256sums = 773d3a215cedf5349eff00a9b052bc961f51ce971933f154f2d2997ed68aa59a
 	sha256sums = SKIP
 	sha256sums = SKIP
